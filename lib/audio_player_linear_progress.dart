@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-//part 2
+//عمر يوسف كمال
+//واجب 1
 class AudioPlayerLinearProgress extends StatefulWidget {
   @override
   _AudioPlayerLinearProgressState createState() =>
