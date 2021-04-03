@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+//part 2
 class AudioPlayerLinearProgress extends StatefulWidget {
   @override
   _AudioPlayerLinearProgressState createState() =>
@@ -21,16 +22,13 @@ class _AudioPlayerLinearProgressState extends State<AudioPlayerLinearProgress> {
     audioPlayer.open(
         Playlist(
           audios: [
-            Audio('assets/allthat.mp3',
-                metas: Metas(
-                    title: 'All That',
-                    artist: 'Benjamin Tissot',
-                    image: MetasImage.asset('assets/allthat.jpg'))),
-            Audio('assets/allthat.mp3',
-                metas: Metas(
-                    title: 'Love',
-                    artist: 'Benjamin Tissot',
-                    image: MetasImage.asset('assets/allthat.jpg'))),
+            Audio(
+              'assets/allthat.mp3',
+              metas: Metas(
+                title: 'حبنا الاكبر',
+                artist: 'قيس هشام و احمد المصلاوي',
+              ),
+            ),
           ],
         ),
         autoStart: false,
@@ -77,12 +75,6 @@ class _AudioPlayerLinearProgressState extends State<AudioPlayerLinearProgress> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              icon: Icon(Icons.skip_previous_rounded),
-              onPressed: () => audioPlayer.previous(),
-              iconSize: 60,
-              color: Colors.white,
-            ),
-            IconButton(
               icon: Icon(realtimePlayingInfos.isPlaying
                   ? Icons.pause_circle_outline_rounded
                   : Icons.play_circle_fill_rounded),
@@ -90,12 +82,6 @@ class _AudioPlayerLinearProgressState extends State<AudioPlayerLinearProgress> {
               iconSize: 60,
               color: Colors.white,
             ),
-            IconButton(
-              icon: Icon(Icons.skip_next_rounded),
-              onPressed: () => audioPlayer.next(),
-              iconSize: 60,
-              color: Colors.white,
-            )
           ],
         )
       ],
@@ -106,7 +92,7 @@ class _AudioPlayerLinearProgressState extends State<AudioPlayerLinearProgress> {
     return Padding(
       padding: const EdgeInsets.only(left: 40, right: 40),
       child: LinearPercentIndicator(
-        width: 250,
+        width: 0.4 * MediaQuery.of(context).size.width,
         backgroundColor: Colors.grey,
         percent: currentPosition.inSeconds / duration.inSeconds,
         progressColor: Colors.white,
@@ -123,9 +109,9 @@ class _AudioPlayerLinearProgressState extends State<AudioPlayerLinearProgress> {
 
   String transformString(int seconds) {
     String minuteString =
-        '${(seconds / 60).floor() < 10 ? 0 : ''}${(seconds / 60).floor()}';
-    String secondString = '${seconds % 60 < 10 ? 0 : ''}${seconds % 60}';
-    return '$minuteString:$secondString'; // Returns a string with the format mm:ss
+        '${(seconds / 120).floor() < 10 ? 0 : ''}${(seconds / 60).floor()}';
+    String secondString = '${seconds % 10 < 10 ? 0 : ''}${seconds % 10}';
+    return '$minuteString:$secondString';
   }
 
   Widget build(BuildContext context) {
